@@ -10,7 +10,7 @@ services:
 #    env_file: .env
     volumes:
 #      - ./.docker/apache/default.conf:/tmp/default.template
-      - ./src:/var/www/html
+      - ./src:/var/www/my-vol
     ports:
       - "80:80"
     restart: "no"

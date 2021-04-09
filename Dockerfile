@@ -58,9 +58,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer --version
 
 # Add the files and set permissions
-WORKDIR /var/www/html
-ADD ./src /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+WORKDIR /var/www/my-vol
+ADD ./src /var/www/my-vol
+RUN chown -R www-data:www-data /var/www/my-vol
 
 # Might still need to do this inside the Dockerfile to get the Laravel cache cleaned and loaded
 # RUN php artisan config:clear && php artisan config:cache

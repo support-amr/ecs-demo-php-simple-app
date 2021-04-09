@@ -57,7 +57,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
-ENV APACHE_LOG_DIR /var/log/apache2
+#ENV APACHE_LOG_DIR /var/log/apache2
 
 # Add the files and set permissions
 WORKDIR /var/www/html

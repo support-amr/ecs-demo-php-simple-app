@@ -16,7 +16,7 @@
         <div class="container">
             <div class="hero-unit">
                 <h1>AMR - ECS Fargate Hello Project</h1>
-                <h2>Congratulations</h2>
+                <h2>Congratulations. Another change.</h2>
                 <p>Your PHP application is now running on a container in Amazon ECS.</p>
                 <p>The container is running PHP version <?php echo phpversion(); ?>.</p>
                 <?php

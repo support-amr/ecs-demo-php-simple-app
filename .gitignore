@@ -1,0 +1,36 @@
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+
+# Logs and databases #
+######################
+*.log
+*.sql
+!latest.sql
+
+# OS generated files #
+######################ß
+.DS_Store*
+ehthumbs.db
+#Icon?
+Thumbs.db
+._*
+
+# Editor generated files #
+######################
+*.un~
+.idea/
+
+# Preprocessors #
+#################
+node_modules/
+gulp.config.json

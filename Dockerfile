@@ -57,10 +57,12 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
+ENV APACHE_LOG_DIR /var/log/apache2
+
 # Add the files and set permissions
-WORKDIR /var/www/my-vol
-ADD ./src /var/www/my-vol
-RUN chown -R www-data:www-data /var/www/my-vol
+WORKDIR /var/www/html
+ADD ./src /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 # Might still need to do this inside the Dockerfile to get the Laravel cache cleaned and loaded
 # RUN php artisan config:clear && php artisan config:cache

@@ -23,25 +23,25 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip
 
 # Install XDebug - Required for code coverage in PHPUnit
-RUN yes | pecl install xdebug \
-    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
-
-# Copy over the php conf
-COPY ./.docker/php/docker-php.conf /etc/apache2/conf-enabled/docker-php.conf
-
-# COPY VHOST file
-COPY ./.docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
-
-# Copy over the php ini
-COPY ./.docker/php/docker-php.ini $PHP_INI_DIR/conf.d/
+#RUN yes | pecl install xdebug \
+#    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+#
+## Copy over the php conf
+#COPY ./.docker/php/docker-php.conf /etc/apache2/conf-enabled/docker-php.conf
+#
+## COPY VHOST file
+#COPY ./.docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
+#
+## Copy over the php ini
+#COPY ./.docker/php/docker-php.ini $PHP_INI_DIR/conf.d/
 
 # Set the timezone
 #ENV TZ=${TIMEZONE}
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN printf "log_errors = On \nerror_log = /dev/stderr\n" > /usr/local/etc/php/conf.d/php-logs.ini
+#RUN printf "log_errors = On \nerror_log = /dev/stderr\n" > /usr/local/etc/php/conf.d/php-logs.ini
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
@@ -51,11 +51,11 @@ RUN echo 'umask 002' >> /root/.bashrc
 RUN echo 'alias ll="ls -lah"' >> /root/.bashrc
 
 # Install Composer
-ENV COMPOSER_HOME /composer
-ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer --version
+#ENV COMPOSER_HOME /composer
+#ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
+#ENV COMPOSER_ALLOW_SUPERUSER 1
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#RUN composer --version
 
 #ENV APACHE_LOG_DIR /var/log/apache2
 

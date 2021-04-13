@@ -15,10 +15,11 @@
     <body>
         <div class="container">
             <div class="hero-unit">
-                <h1>AMR - ECS Fargate Hello Project</h1>
+                <h1>AMR - ECS Php 7.3 Apache Hello Project</h1>
                 <h2>Congratulations. Hello from PHP7.3 Apache</h2>
                 <p>Your PHP application is now running on a container in Amazon ECS.</p>
                 <p>The container is running PHP version <?php echo phpversion(); ?>.</p>
+                <p>Updated from pipeline.</p>
                 <?php
 //                        $myfile = fopen("/var/www/my-vol/date", "r") or die("");
 //                        echo fread($myfile,filesize("/var/www/my-vol/date"));

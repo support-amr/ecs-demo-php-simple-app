@@ -1,0 +1,57 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+
+# STACK: vpc-demo
+
+# This CloudFormation template deploys a basic VPC / Network.  Specifically:
+# It deploys a VPC with 4 subnets (2 public, 2 private) across 2 Availability Zones
+# A NAT Gateway is used to provide egress for private subnets.
+# The VPC and subnets are exported for use by other stacks.
+
+
+Resources:
+
+  # First, an ECR:
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Join [ "-", [ !Ref ProjectSlug, "repo" ] ]
+      Tags:
+        - Key: name
+          Value: !Join [ " ", [ !Ref ProjectSlug, "Repo" ] ]
+
+Outputs:
+  ECRRepoName:
+    Description: Name of ecr repo
+    Value: !Ref ECRRepository
+  ECRRepoARN:
+    Description: Arn of ecr repo
+    Value: !GetAtt ECRRepository.Arn
+  ECRRepoURI:
+    Description: URI of ecr repo
+    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}
+  ECRRepoPushCommands:
+    Description: PushCommands of ecr repo
+    Value:
+      Fn::Join:
+        - ''
+        - - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin
+          - " "
+          - !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}
+          - " && \ "
+          - docker build -t
+          - !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}
+          - " . "
+          - " && \ "
+          - docker tag
+          - " "
+          - !Sub ${ECRRepository}:latest ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}:latest
+          - " && \ "
+          - docker push
+          - " "
+          - !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}:latest
+
+# --- Parameters ---
+Parameters:
+  ProjectSlug:
+    Type: String

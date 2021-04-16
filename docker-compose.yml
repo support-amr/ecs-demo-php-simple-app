@@ -2,15 +2,15 @@ version: '3'
 
 services:
   app:
-    container_name: ecs-demo-php-simple-app
+    container_name: sample-laravel8-app
 
     # build: . -> uses Dockerfile in current folder as docker-compose.yml to build the container
     build: .
-    image: ecs-demo-php-simple-app:latest
+    image: sample-laravel8-app:latest
 #    env_file: .env
-#    volumes:
+    volumes:
 #      - ./.docker/apache/default.conf:/tmp/default.template
-#      - ./src:/var/www/my-vol
+      - ./src:/var/www/html
     ports:
       - "80:80"
     restart: "no"

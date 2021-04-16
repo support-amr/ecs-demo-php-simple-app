@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 #COPY ./.docker/php/docker-php.conf /etc/apache2/conf-enabled/docker-php.conf
 #
 ## COPY VHOST file
-#COPY ./.docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./.docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
 #
 ## Copy over the php ini
 #COPY ./.docker/php/docker-php.ini $PHP_INI_DIR/conf.d/

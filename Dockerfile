@@ -51,11 +51,11 @@ RUN echo 'umask 002' >> /root/.bashrc
 RUN echo 'alias ll="ls -lah"' >> /root/.bashrc
 
 # Install Composer
-#ENV COMPOSER_HOME /composer
-#ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
-#ENV COMPOSER_ALLOW_SUPERUSER 1
-#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#RUN composer --version
+ENV COMPOSER_HOME /composer
+ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
 
 #ENV APACHE_LOG_DIR /var/log/apache2
 

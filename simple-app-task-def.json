@@ -25,13 +25,6 @@
                     "containerPath": "/var/www/my-vol"
                 }
             ],
-            "entryPoint": [
-                "sh",
-                "-c"
-            ],
-            "command": [
-                "/bin/sh -c \"composer install\""
-            ],
             "essential": true
         },
         {

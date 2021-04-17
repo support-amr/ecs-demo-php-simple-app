@@ -64,6 +64,8 @@ WORKDIR /var/www/html
 ADD ./src /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
+RUN composer install
+
 # Might still need to do this inside the Dockerfile to get the Laravel cache cleaned and loaded
 # RUN php artisan config:clear && php artisan config:cache
 

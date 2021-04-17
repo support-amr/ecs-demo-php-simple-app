@@ -25,11 +25,6 @@
                     "containerPath": "/var/www/my-vol"
                 }
             ],
-            "entryPoint": [
-                "/usr/sbin/apache2",
-                "-D",
-                "FOREGROUND"
-            ],
             "essential": true
         },
         {

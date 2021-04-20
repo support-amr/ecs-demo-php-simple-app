@@ -50,7 +50,7 @@
 
                         <div class="p-6">
                             <div class="flex items-center">
-                                <h1>Hello</h1>
+                                <h1>Hello Again</h1>
                             </div>
 
                             <div class="ml-12">

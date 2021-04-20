@@ -8,9 +8,9 @@ services:
     build: .
     image: sample-laravel8-app:latest
 #    env_file: .env
-    volumes:
+#    volumes:
 #      - ./.docker/apache/default.conf:/tmp/default.template
-      - ./src:/var/www/html
+#      - ./simplesrc:/var/www/html
     ports:
       - "80:80"
     restart: "no"

@@ -1,3 +1,14 @@
+#Create/Update
+```
+aws cloudformation deploy --template-file ecs-refarch-continuous-deployment.yaml --stack-name laravel-ecs-cd  --capabilities CAPABILITY_IAM --profile uat
+
+aws cloudformation delete-stack --stack-name laravel-ecs-cd --profile uat
+```
+
+# Copy templates to S3
+aws s3 cp ./templates/ s3://amr-cloudformation-template/templates --recursive --exclude "*" --include "*.yaml" --profile uat
+
+
 # ECS Reference Architecture: Continuous Deployment
 
 The ECS Continuous Deployment reference architecture demonstrates how to achieve

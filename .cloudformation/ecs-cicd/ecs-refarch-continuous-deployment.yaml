@@ -37,7 +37,7 @@ Parameters:
 
   ClusterMaxSize:
     Type: Number
-    Default: 3
+    Default: 2
 
   ClusterDesiredSize:
     Type: Number
@@ -46,6 +46,7 @@ Parameters:
 
   GitHubUser:
     Type: String
+    Default: support-amr
     Description: Your username on GitHub.
 
   GitHubRepo:
@@ -61,6 +62,7 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
+    Default: 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
     Description: >
       Token for the user specified above. (https://github.com/settings/tokens)
 

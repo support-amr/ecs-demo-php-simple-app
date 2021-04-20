@@ -10,9 +10,9 @@
         {
             "environment": [],
             "name": "simple-app",
-            "image": "amazon/amazon-ecs-sample",
+            "image": "132048024049.dkr.ecr.ap-southeast-2.amazonaws.com/sample-laravel8-ecr-repo:latest",
             "cpu": 10,
-            "memory": 500,
+            "memory": 3500,
             "portMappings": [
                 {
                     "containerPort": 80,
@@ -25,18 +25,13 @@
                     "containerPath": "/var/www/my-vol"
                 }
             ],
-            "entryPoint": [
-                "/usr/sbin/apache2",
-                "-D",
-                "FOREGROUND"
-            ],
             "essential": true
         },
         {
             "name": "busybox",
             "image": "busybox",
             "cpu": 10,
-            "memory": 500,
+            "memory": 2000,
             "volumesFrom": [
             {
               "sourceContainer": "simple-app"

@@ -14,9 +14,20 @@ Parameters:
     Type: String
     Default: t2.micro
 
-  ClusterSize:
+  EC2InstanceKeyName:
+    Type: String
+
+  ClusterMinSize:
+    Type: Number
+    Default: 1
+
+  ClusterMaxSize:
     Type: Number
     Default: 2
+
+  ClusterDesiredSize:
+    Type: Number
+    Default: 1
 
   Subnets:
     Type: List<AWS::EC2::Subnet::Id>
@@ -97,6 +108,10 @@ Resources:
       SecurityGroupIngress:
         - SourceSecurityGroupId: !Ref SourceSecurityGroup
           IpProtocol: -1
+        - CidrIp: "0.0.0.0/0"
+          IpProtocol: "TCP"
+          FromPort: 22
+          ToPort: 22
       VpcId: !Ref VpcId
 
   Cluster:
@@ -110,10 +125,10 @@ Resources:
     Properties:
       VPCZoneIdentifier: !Ref Subnets
       LaunchConfigurationName: !Ref LaunchConfiguration
-      MinSize: !Ref ClusterSize
-      MaxSize: !Ref ClusterSize
-      DesiredCapacity: !Ref ClusterSize
-      Tags: 
+      MinSize: !Ref ClusterMinSize
+      MaxSize: !Ref ClusterMaxSize
+      DesiredCapacity: !Ref ClusterDesiredSize
+      Tags:
         - Key: Name
           Value: !Sub ${AWS::StackName} - ECS Host
           PropagateAtLaunch: true
@@ -160,9 +175,12 @@ Resources:
                   - /etc/cfn/cfn-hup.conf
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
     Properties:
+      # AMI of Linux Instance found in Amazon Marketplace
       ImageId: !FindInMap [ AWSRegionToAMI, !Ref "AWS::Region", AMI ]
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref InstanceProfile
+      KeyName:
+        Ref: "EC2InstanceKeyName"
       SecurityGroups:
         - !Ref SecurityGroup
       UserData:

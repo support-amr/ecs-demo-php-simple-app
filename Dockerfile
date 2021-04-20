@@ -27,12 +27,19 @@ RUN apt-get update \
 
 COPY ./.docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
+RUN curl -sS https://getcomposer.org/installer | php \
+	&& mv composer.phar /usr/local/bin/composer \
+	&& composer self-update --1
+
 WORKDIR /var/www/html
 
 # Remove default nginx file
 RUN rm *.html
 
-ADD ./simplesrc /var/www/html/public
+ADD ./src /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
+RUN composer install && composer dump-autoload
 
 #COPY ./.docker/nginx/post_deploy.sh /usr/local/bin/post_deploy.sh
 #RUN ["chmod", "+x", "/usr/local/bin/post_deploy.sh"]

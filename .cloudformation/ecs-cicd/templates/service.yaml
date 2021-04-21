@@ -50,7 +50,7 @@ Resources:
               Service: ecs-tasks.amazonaws.com
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
-
+        - arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess
   LogGroup:
     Type: AWS::Logs::LogGroup
     Properties:

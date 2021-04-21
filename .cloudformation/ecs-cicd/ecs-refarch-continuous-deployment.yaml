@@ -72,6 +72,9 @@ Parameters:
     Description: >
       The S3 bucket from which to fetch the templates used by this stack.
 
+  ProjectEnvSecrets:
+    Type: AWS::SSM::Parameter::Name
+    Default: laravel_ecs_env
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -161,6 +164,7 @@ Resources:
         TargetGroup: !GetAtt LoadBalancer.Outputs.TargetGroup
         SourceSecurityGroup: !GetAtt LoadBalancer.Outputs.SecurityGroup
         Subnets: !GetAtt VPC.Outputs.Subnets
+        ProjectEnvSecrets: !Ref ProjectEnvSecrets
 
 
 Outputs:

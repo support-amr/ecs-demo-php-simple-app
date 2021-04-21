@@ -17,6 +17,9 @@ Parameters:
       - Fargate
       - EC2
 
+  ProjectEnvSecrets:
+    Type: AWS::SSM::Parameter::Name
+
   TargetGroup:
     Type: String
 
@@ -106,6 +109,10 @@ Resources:
               ContainerPath: /var/www/my-vol
           PortMappings:
             - ContainerPort: 80
+          Secrets:
+            - Name: env_dump_without_spaces
+              ValueFrom: !Ref ProjectEnvSecrets
+
           LogConfiguration:
             LogDriver: awslogs
             Options:

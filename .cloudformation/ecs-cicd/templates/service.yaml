@@ -99,7 +99,8 @@ Resources:
         - Name: simple-app
           Image: 132048024049.dkr.ecr.ap-southeast-2.amazonaws.com/base-php-fpm-ecr-repo:latest
           Essential: true
-          MemoryReservation: 4000
+          Memory: 2500
+          MemoryReservation: 2000
           MountPoints:
             - SourceVolume: my-vol
               ContainerPath: /var/www/my-vol
